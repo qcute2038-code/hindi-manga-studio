@@ -137,6 +137,12 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+@theme inline {
+  --font-display: var(--font-display);
+  --font-hindi: var(--font-hindi);
+  --shadow-panel: var(--shadow-panel);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -145,5 +151,33 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-hindi);
+    background-image:
+      radial-gradient(oklch(0.18 0.01 60 / 7%) 1px, transparent 1px);
+    background-size: 14px 14px;
   }
+
+  h1, h2, h3, .display {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+}
+
+@utility panel {
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-panel);
+  background-color: var(--color-card);
+}
+
+@utility ink-title {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+@utility story-prose {
+  font-family: var(--font-hindi);
+  font-size: 1.06rem;
+  line-height: 2;
+  white-space: pre-wrap;
 }
