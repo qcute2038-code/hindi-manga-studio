@@ -10,7 +10,9 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { Toaster } from "@/components/ui/sonner";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+
 
 function NotFoundComponent() {
   return (
@@ -128,8 +130,47 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <SiteHeader />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <Toaster position="top-center" richColors />
     </QueryClientProvider>
   );
 }
+
+function SiteHeader() {
+  return (
+    <header className="sticky top-0 z-40 border-b-2 border-foreground bg-card/95 backdrop-blur">
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3">
+        <Link to="/" className="ink-title text-2xl text-foreground">
+          मंगा<span className="text-primary">कथा</span>
+        </Link>
+        <nav className="flex items-center gap-2 text-sm font-semibold">
+          <Link
+            to="/"
+            className="rounded-sm px-3 py-1.5 transition-colors hover:bg-secondary"
+            activeProps={{ className: "bg-primary text-primary-foreground rounded-sm px-3 py-1.5" }}
+            activeOptions={{ exact: true }}
+          >
+            नई कहानी
+          </Link>
+          <Link
+            to="/library"
+            className="rounded-sm px-3 py-1.5 transition-colors hover:bg-secondary"
+            activeProps={{ className: "bg-primary text-primary-foreground rounded-sm px-3 py-1.5" }}
+          >
+            लाइब्रेरी
+          </Link>
+          <Link
+            to="/api-docs"
+            className="rounded-sm px-3 py-1.5 transition-colors hover:bg-secondary"
+            activeProps={{ className: "bg-primary text-primary-foreground rounded-sm px-3 py-1.5" }}
+          >
+            API
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
